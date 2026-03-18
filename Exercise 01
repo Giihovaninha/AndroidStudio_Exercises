@@ -1,0 +1,119 @@
+/* Interface */
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:id="@+id/main"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:orientation="vertical" >
+   <!-- comentário    -->
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Digite o seu Nome:"
+       android:textSize="30dp"
+       android:layout_marginTop="50dp"
+       android:layout_marginLeft="30dp"
+       android:layout_marginRight="30dp" />
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="30dp"
+       android:layout_marginTop="30dp"
+       android:layout_marginLeft="30dp"
+       android:layout_marginRight="30dp"
+       android:id="@+id/txtNome" />
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Clique !"
+       android:textSize="30dp"
+       android:layout_marginTop="30dp"
+       android:layout_marginLeft="30dp"
+       android:layout_marginRight="30dp"
+       android:id="@+id/btClique" />
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Boa Noite ...."
+       android:textSize="30dp"
+       android:layout_marginTop="30dp"
+       android:layout_marginLeft="30dp"
+       android:layout_marginRight="30dp"
+       android:id="@+id/legenda" />
+
+
+</LinearLayout>
+/* Java part */
+package com.example.n1_exemplo1;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+
+
+
+public class MainActivity extends AppCompatActivity {
+   EditText txtNome;
+   Button   btClique;
+   TextView legenda;
+
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+
+
+       // vinculando os objetos com os objetos da interface gráfica
+       txtNome  = findViewById(R.id.txtNome);
+       btClique = findViewById(R.id.btClique);
+       legenda  = findViewById(R.id.legenda);
+
+
+       btClique.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               legenda.setText("Boa Noite " + txtNome.getText().toString());
+           }
+       });
+   }
+}
+/* obs.: O arquivo AndroidManifest.xml é um arquivo de configuração, não houve alterações */
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools">
+
+
+   <application
+       android:allowBackup="true"
+       android:dataExtractionRules="@xml/data_extraction_rules"
+       android:fullBackupContent="@xml/backup_rules"
+       android:icon="@mipmap/ic_launcher"
+       android:label="@string/app_name"
+       android:roundIcon="@mipmap/ic_launcher_round"
+       android:supportsRtl="true"
+       android:theme="@style/Theme.N1_Exemplo1"
+       tools:targetApi="31">
+       <activity
+           android:name=".MainActivity"
+           android:exported="true">
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity>
+   </application>
+
+
+</manifest>
+
