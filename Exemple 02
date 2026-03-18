@@ -1,0 +1,127 @@
+/* Interface */
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:id="@+id/main"
+   android:orientation="vertical"
+   android:layout_margin="30dp" >
+
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Digite um Número:"
+       android:textSize="20dp" />
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="20dp"
+       android:inputType="number"
+       android:id="@+id/txtN1" />
+
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Digite um outro Número:"
+       android:textSize="20dp" />
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="20dp"
+       android:inputType="number"
+       android:id="@+id/txtN2" />
+
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Resultado:"
+       android:textSize="20dp" />
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="20dp"
+       android:id="@+id/txtRes"
+       android:enabled="false"/>
+
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Adicionar"
+       android:textSize="20dp"
+       android:layout_marginLeft="50dp"
+       android:layout_marginRight="50dp"
+       android:id="@+id/btAdicionar" />
+
+
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Subtrair"
+       android:textSize="20dp"
+       android:layout_marginLeft="50dp"
+       android:layout_marginRight="50dp"
+       android:id="@+id/btSubtrair" />
+      
+</LinearLayout>
+/* Java part */
+package com.example.n1_exemplo2;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+
+public class MainActivity extends AppCompatActivity {
+   EditText txtN1, txtN2, txtRes;
+   Button   btAdicionar, btSubtrair;
+
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+
+
+       txtN1  = findViewById(R.id.txtN1);
+       txtN2  = findViewById(R.id.txtN2);
+       txtRes = findViewById(R.id.txtRes);
+       btAdicionar = findViewById(R.id.btAdicionar);
+       btSubtrair  = findViewById(R.id.btSubtrair);
+
+
+       btAdicionar.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               int n1, n2, res = 0;
+               n1 = Integer.parseInt(txtN1.getText().toString());
+               n2 = Integer.parseInt(txtN2.getText().toString());
+               res = n1 + n2;
+               txtRes.setText(" " + res);
+           }
+       });
+
+
+       btSubtrair.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               int n1, n2, res = 0;
+               n1 = Integer.parseInt(txtN1.getText().toString());
+               n2 = Integer.parseInt(txtN2.getText().toString());
+               res = n1 - n2;
+               txtRes.setText(" " + res);
+           }
+       });
+   }
+}
+
