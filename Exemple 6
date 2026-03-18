@@ -1,0 +1,119 @@
+/* Interface */
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:id="@+id/main"
+   android:orientation="vertical" >
+
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Selecione uma cor"
+       android:textSize="25dp"
+       android:textAlignment="center"
+       android:layout_margin="50dp"  />
+   <Spinner
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="50dp"
+       android:id="@+id/spCores" />
+</LinearLayout>
+/* res/values*/
+<resources>
+   <string name="app_name">N1_Exemplo6</string>
+   <string-array name="cores">
+       <item>Branco</item>
+       <item>Azul</item>
+       <item>Amarelo</item>
+       <item>Verde</item>
+       <item>Vermelho</item>
+       <item>Preto</item>       
+   </string-array>
+</resources>
+/* Java */
+package com.example.n1_exemplo6;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Spinner;
+
+
+public class MainActivity extends AppCompatActivity {
+   Spinner spCores;
+   LinearLayout main;
+
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+
+
+       spCores = findViewById(R.id.spCores);
+       main = findViewById(R.id.main);
+
+
+       //String[] cores = new String[] {"Branco","Azul","Amarelo","Verde","Vermelho","Preto"};
+       String[] cores = getResources().getStringArray(R.array.cores);
+
+
+       ArrayAdapter<String> aad = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, cores);
+
+
+       spCores.setAdapter(aad);
+
+
+       spCores.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               String corSelecionada = parent.getItemAtPosition(position).toString();
+               switch (corSelecionada.toLowerCase()) {
+                   case "azul":
+                       main.setBackgroundColor(Color.BLUE);
+                       break;
+                   case "amarelo":
+                       main.setBackgroundColor(Color.YELLOW);
+                       break;
+                   case "verde":
+                       main.setBackgroundColor(Color.GREEN);
+                       break;
+                   case "vermelho":
+                       main.setBackgroundColor(Color.RED);
+                       break;
+                   case "branco":
+                       main.setBackgroundColor(Color.WHITE);
+                       break;
+                   case "preto":
+                       main.setBackgroundColor(Color.BLACK);
+                       break;
+               }
+           }
+
+
+           @Override
+           public void onNothingSelected(AdapterView<?> parent) {
+
+
+           }
+       });
+   }
+}
+
+
+
+
+
+
