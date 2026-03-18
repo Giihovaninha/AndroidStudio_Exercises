@@ -1,0 +1,160 @@
+/* Interface */
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:id="@+id/main"
+   android:orientation="vertical" >
+
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Opções para Férias:"
+       android:textSize="25dp"
+       android:layout_margin="25dp"
+       android:textAlignment="center"/>
+   <CheckBox
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Nordeste"
+       android:textSize="25dp"
+       android:layout_marginLeft="30dp"
+       android:id="@+id/ckNordeste" />
+   <CheckBox
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Florianópolis"
+       android:textSize="25dp"
+       android:layout_marginLeft="30dp"
+       android:id="@+id/ckFlorianopolis" />
+   <CheckBox
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Caldas Novas"
+       android:textSize="25dp"
+       android:layout_marginLeft="30dp"
+       android:id="@+id/ckCaldas" />
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Como chegar:"
+       android:textSize="25dp"
+       android:layout_margin="25dp"
+       android:textAlignment="center"/>
+   <RadioGroup
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+
+   <RadioButton
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Carro"
+       android:textSize="25dp"
+       android:layout_marginLeft="30dp"
+       android:id="@+id/optCarro" />
+   <RadioButton
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Onibus"
+       android:textSize="25dp"
+       android:layout_marginLeft="30dp"
+       android:id="@+id/optOnibus" />
+   <RadioButton
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Avião"
+       android:textSize="25dp"
+       android:layout_marginLeft="30dp"
+       android:id="@+id/optAviao" />
+   </RadioGroup>
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="OK"
+       android:textSize="25dp"
+       android:layout_marginLeft="80dp"
+       android:layout_marginRight="80dp"
+       android:id="@+id/btok" />
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Opções Selecionadas:"
+       android:textSize="25dp"
+       android:layout_margin="25dp"
+       android:textAlignment="center"
+       android:id="@+id/txtDados"/>
+</LinearLayout>
+/* Java */
+
+package com.example.n1_exemplo5;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.TextView;
+
+
+public class MainActivity extends AppCompatActivity {
+   CheckBox ckNordeste, ckFlorianopolis, ckCaldas;
+   RadioButton optCarro, optOnibus, optAviao;
+   Button btOk;
+   TextView txtDados;
+
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+      
+       ckNordeste = findViewById(R.id.ckNordeste);
+       ckFlorianopolis = findViewById(R.id.ckFlorianopolis);
+       ckCaldas = findViewById(R.id.ckCaldas);
+       optCarro = findViewById(R.id.optCarro);
+       optOnibus = findViewById(R.id.optOnibus);
+       optAviao = findViewById(R.id.optAviao);
+       btOk = findViewById(R.id.btok);
+       txtDados = findViewById(R.id.txtDados);
+      
+       btOk.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               String dados = "Opçoes selecionadas: \n";
+               dados += "Local : ";
+               if (ckNordeste.isChecked()) {
+                   dados += " Nordeste - ";
+               }
+               if (ckFlorianopolis.isChecked()) {
+                   dados += "Florianópolis - ";
+               }
+               if (ckCaldas.isChecked()) {
+                   dados += "Caldas Novas";
+               }
+               dados += "\nComo chegar: ";
+               if (optCarro.isChecked()) {
+                   dados += "Carro";
+               }
+               if (optOnibus.isChecked()) {
+                   dados += "Ônibus";
+               }
+               if (optAviao.isChecked()) {
+                   dados += "Avião";
+               }
+               txtDados.setText(dados);               
+           }
+       });
+   }
+}
+
+
+
+
+
