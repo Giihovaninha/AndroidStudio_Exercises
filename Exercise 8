@@ -1,0 +1,62 @@
+Interface part (main.xml)
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/Main">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecione a hora: "
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:fontFamily="sans-serif-black"/>
+    <TimePicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hora"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btMostrar"
+        android:text="Mostrar a Hora"
+        android:fontFamily="sans-serif"
+        android:textSize="25dp"
+        android:textAlignment="center"/>
+
+
+</LinearLayout>
+
+Java Part 
+package com.example.n1_exemplo8;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TimePicker;
+
+public class MainActivity extends AppCompatActivity {
+
+    TimePicker tp;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button bt = (Button) findViewById(R.id.btMostrar);
+        tp = (TimePicker) findViewById(R.id.hora);
+        bt.setOnClickListener((View.OnClickListener) this);
+    }
+    public void onClick(View argO) {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+            dialogo.setMessage("Hora selecionada : " + tp.getHour() + ":" + tp.getMinute());
+            dialogo.setTitle("Hora");
+            dialogo.show();
+    }
+}
