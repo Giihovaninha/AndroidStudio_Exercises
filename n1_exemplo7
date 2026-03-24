@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/main">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecione uma data: "
+        android:textSize="25dp"
+        android:layout_margin="30dp"
+        android:textAlignment="center">
+       <DatePicker
+           android:id="@+id/data"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="30dp"
+           android:layout_marginRight="30dp"/>
+        <Button
+            android:id="@+id/btData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mostrar Data" />
+
+
+
+    </TextView>
+</LinearLayout>
+
+Java part
+
+package com.example.n1_exemplo07;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+    Button btData;
+    DatePicker data;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        btData = findViewById(R.id.btData);
+        data = findViewById(R.id.data);
+        btData = setOnClickListener(this);
+
+    }
+
+    private Button setOnClickListener(MainActivity mainActivity) {
+        return null;
+    }
+
+@Override
+    public void onClick(View view){
+        int mes = data.getMonth() + 1;
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+        dialogo.setMessage("Data Selecionada|: " + data.getDayOfMonth() + "/" +
+               mes + "/" + data.getYear() );
+        dialogo.setTitle("Atenção");
+        dialogo.setNeutralButton("OK", null);
+        dialogo.show();
+
+    }
+
+}
